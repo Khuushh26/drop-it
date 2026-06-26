@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drop It | Track Your Order</title>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/96c75676d8.js" crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Quicksand", sans-serif;
+      background-color: #ffffff;
+    }
+
+    /* ── Hero Banner ── */
+    .track-hero {
+      background-image: url('./assets/bg-home.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #F2FFF8;
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 74px; /* offset for fixed navbar */
+    }
+
+    .track-hero .breadcrumb {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .track-hero .breadcrumb a {
+      text-decoration: none;
+      color: #3BB77E;
+    }
+
+    .track-hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0;
+    }
+
+    /* ── Main Section ── */
+    .track-section {
+      display: flex;
+      gap: 24px;
+      padding: 40px 40px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    /* ── Left Card ── */
+    .order-card {
+      flex: 1;
+      min-width: 280px;
+      max-width: 380px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 24px;
+    }
+
+    .order-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .order-header img {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .order-header-info h3 {
+      margin: 0 0 4px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .order-header-info p {
+      margin: 0;
+      font-size: 12px;
+      color: #888;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    .eta-box {
+      text-align: center;
+      padding: 20px 0 16px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .eta-box .eta-time {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .eta-box .eta-label {
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 4px;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    /* ── Status Steps ── */
+    .status-steps {
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .step:last-child { margin-bottom: 0; }
+
+    .step-dot-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .step-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ddd;
+      margin-top: 3px;
+    }
+
+    .step-dot.done   { background: #3BB77E; }
+    .step-dot.active { background: #3BB77E; box-shadow: 0 0 0 3px rgba(59,183,126,0.25); }
+    .step-dot.pending { background: #ddd; }
+
+    .step-line {
+      width: 2px;
+      height: 22px;
+      background: #ddd;
+      margin-top: 2px;
+    }
+
+    .step-line.done { background: #3BB77E; }
+
+    .step-text { flex: 1; }
+
+    .step-text p {
+      margin: 0;
+      font-size: 13px;
+      color: #555;
+      font-family: "Quicksand", sans-serif;
+      font-weight: 500;
+    }
+
+    .step-text p.active-text { color: #3BB77E; font-weight: 700; }
+    .step-text p.pending-text { color: #bbb; }
+
+    /* ── Delivery Agent ── */
+    .agent-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+    }
+
+    .agent-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .agent-info img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #3BB77E;
+    }
+
+    .agent-info .agent-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 2px;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    .agent-info .agent-role {
+      font-size: 12px;
+      color: #aaa;
+      margin: 0;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    .agent-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .agent-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: opacity 0.2s;
+    }
+
+    .agent-btn:hover { opacity: 0.85; }
+    .agent-btn.call  { background: #3BB77E; color: #fff; }
+    .agent-btn.chat  { background: #3BB77E; color: #fff; }
+
+    /* ── Map ── */
+    .map-wrap {
+      flex: 2;
+      min-width: 300px;
+      min-height: 460px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .track-section {
+        flex-direction: column;
+        padding: 24px 16px 40px;
+      }
+
+      .order-card {
+        max-width: 100%;
+      }
+
+      .map-wrap {
+        min-height: 340px;
+      }
+
+      #map {
+        min-height: 340px;
+      }
+
+      .track-hero {
+        height: 160px;
+        margin-top: 60px;
+      }
+
+      .track-hero h1 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .track-hero { margin-top: 55px; }
+      .eta-box .eta-time { font-size: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar (same as all pages) -->
+  <div id="above-bar"></div>
+  <div id="navbar"></div>
+  <div id="bottom-bar"></div>
+
+  <!-- Hero Banner -->
+  <div class="track-hero">
+    <p class="breadcrumb"><a href="index.html">Home</a> / Order</p>
+    <h1>Order</h1>
+  </div>
+
+  <!-- Main Content -->
+  <div class="track-section">
+
+    <!-- Left: Order Card -->
+    <div class="order-card">
+
+      <!-- Order Header -->
+      <div class="order-header">
+        <img src="./assets/orders-dashboard.png" alt="Order" />
+        <div class="order-header-info">
+          <h3>Order No.</h3>
+          <p>Ordered at 06 Sept, 10:00pm</p>
+          <p style="margin-top:4px; color:#1a1a1a;">2x Lays &nbsp;|&nbsp; 4x Banan Chips</p>
+        </div>
+      </div>
+
+      <!-- ETA -->
+      <div class="eta-box">
+        <div class="eta-time">20 min</div>
+        <div class="eta-label">Estimated Delivery Time</div>
+      </div>
+
+      <!-- Status Steps -->
+      <div class="status-steps">
+
+        <div class="step">
+          <div class="step-dot-wrap">
+            <div class="step-dot done"></div>
+            <div class="step-line done"></div>
+          </div>
+          <div class="step-text"><p>Your order has been received</p></div>
+        </div>
+
+        <div class="step">
+          <div class="step-dot-wrap">
+            <div class="step-dot done"></div>
+            <div class="step-line done"></div>
+          </div>
+          <div class="step-text"><p>Delivery agent reached the store</p></div>
+        </div>
+
+        <div class="step">
+          <div class="step-dot-wrap">
+            <div class="step-dot active"></div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-text"><p class="active-text">Your order has been picked up for delivery</p></div>
+        </div>
+
+        <div class="step">
+          <div class="step-dot-wrap">
+            <div class="step-dot pending"></div>
+          </div>
+          <div class="step-text"><p class="pending-text">Order arriving soon</p></div>
+        </div>
+
+      </div>
+
+      <!-- Delivery Agent -->
+      <div class="agent-box">
+        <div class="agent-info">
+          <img src="./assets/person.png" alt="Agent" />
+          <div>
+            <p class="agent-name">Phani T.</p>
+            <p class="agent-role">Delivery Agent</p>
+          </div>
+        </div>
+        <div class="agent-actions">
+          <button class="agent-btn call" title="Call Agent">
+            <i class="fas fa-phone"></i>
+          </button>
+          <button class="agent-btn chat" title="Chat Agent">
+            <i class="fas fa-comment-dots"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right: Map -->
+    <div class="map-wrap">
+      <div id="map"></div>
+    </div>
+
+  </div>
+
+  <!-- Navbar + Footer scripts (same as all pages) -->
+  <script src="navbar.js"></script>
+  <script src="footer.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    // Store location (approx)
+    const storeLatLng   = [-7.9674, 112.6326];
+    // Delivery location (approx)
+    const deliveryLatLng = [-7.9598, 112.6412];
+    // Agent current position (mid-route)
+    const agentLatLng   = [-7.9636, 112.6369];
+
+    const map = L.map('map').setView(agentLatLng, 15);
+
+    // OpenStreetMap tiles (free, no API key)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Custom green marker factory
+    function greenIcon(label) {
+      return L.divIcon({
+        className: '',
+        html: `<div style="
+          background:#3BB77E;
+          color:#fff;
+          border-radius:50%;
+          width:32px;height:32px;
+          display:flex;align-items:center;justify-content:center;
+          font-size:14px;
+          box-shadow:0 2px 6px rgba(0,0,0,0.3);
+          border:2px solid #fff;
+          font-family:Quicksand,sans-serif;font-weight:700;
+        ">${label}</div>`,
+        iconSize: [32, 32],
+        iconAnchor: [16, 16]
+      });
+    }
+
+    // Agent marker (avatar style)
+    const agentIcon = L.divIcon({
+      className: '',
+      html: `<div style="
+        background:#fff;
+        border:3px solid #3BB77E;
+        border-radius:50%;
+        width:38px;height:38px;
+        display:flex;align-items:center;justify-content:center;
+        font-size:18px;
+        box-shadow:0 2px 8px rgba(0,0,0,0.3);
+      ">🛵</div>`,
+      iconSize: [38, 38],
+      iconAnchor: [19, 19]
+    });
+
+    // Markers
+    L.marker(storeLatLng, { icon: greenIcon('🏪') })
+      .addTo(map)
+      .bindPopup('<b>Drop It Store</b><br>Order pickup location');
+
+    L.marker(deliveryLatLng, { icon: greenIcon('🏠') })
+      .addTo(map)
+      .bindPopup('<b>Your Location</b><br>Delivery destination');
+
+    L.marker(agentLatLng, { icon: agentIcon })
+      .addTo(map)
+      .bindPopup('<b>Phani T.</b><br>Your delivery agent<br>~20 min away')
+      .openPopup();
+
+    // Green route polyline (store → agent → delivery)
+    const routeCoords = [
+      storeLatLng,
+      [-7.9670, 112.6340],
+      [-7.9655, 112.6355],
+      agentLatLng,
+      [-7.9618, 112.6385],
+      [-7.9605, 112.6400],
+      deliveryLatLng
+    ];
+
+    L.polyline(routeCoords, {
+      color: '#3BB77E',
+      weight: 5,
+      opacity: 0.85,
+      lineJoin: 'round'
+    }).addTo(map);
+  </script>
+
+</body>
+</html>
