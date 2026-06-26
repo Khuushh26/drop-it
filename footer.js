@@ -9,21 +9,21 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="feature-container">
         <div class="feature">
-            <img src="./assets/bestdeals.png" alt="Deals">
+            <img src="./bestdeals.png" alt="Deals">
             <div>
                 <h3>Best Prices & Deals</h3>
                 <p style="color: black";>Don't miss our daily amazing deals and prices</p>
             </div>
         </div>
         <div class="feature">
-            <img src="./assets/refundable.png" alt="Refund">
+            <img src="./refundable.png" alt="Refund">
             <div>
                 <h3>Refundable</h3>
                 <p style="color: black";>If your items have damage we agree to refund it</p>
             </div>
         </div>
         <div class="feature">
-            <img src="assets/delivery.png" alt="Free Delivery">
+            <img src="./delivery.png" alt="Free Delivery">
             <div>
                 <h3>Free Delivery</h3>
                 <p style="color: black";>Do purchase over $50 and get free delivery anywhere</p>
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="contact-info">
                 <div>
                     <div style="display: flex; align-items: center;">
-                        <img src="assets/logo.png" alt="Logo" style="width: 30px; height: 30px; margin-right: 10px;">
+                        <img src="./logo.png" alt="Logo" style="width: 30px; height: 30px; margin-right: 10px;">
                         <h4 style="margin: 0;">Drop It</h4>
                     </div>
                     <ul style="list-style-type: none; padding: 0;">
