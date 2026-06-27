@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const footerHTML = `
-    <div class="subscription" style="border-radius: 20px; margin: 0 40px; overflow: hidden;">
+    <div class="subscription" style="border-radius: 20px; margin: 20px 40px; overflow: hidden;">
         <h2>Subscribe to our Newsletter</h2>
         <form action="#" method="post">
             <input type="email" name="email" placeholder="Your Email Address" required>
@@ -90,7 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="footer-bottom">
             <div style="display: flex; align-items: center;">
                 <p style = "color:black";>&copy; 2024 Grocery Mart. All rights reserved. | <a href="#">Privacy Policy</a></p>
-                <img src="images/Payment.png" alt="American Express">
+                <span style="display:flex;gap:8px;align-items:center;margin-left:10px;">
+  <i class="fab fa-cc-visa" style="font-size:28px;color:#1a1f71;"></i>
+  <i class="fab fa-cc-mastercard" style="font-size:28px;color:#eb001b;"></i>
+  <i class="fab fa-cc-amex" style="font-size:28px;color:#007bc1;"></i>
+</span>
             </div>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
