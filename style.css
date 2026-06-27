@@ -904,12 +904,13 @@ input, button {
     padding: 100px;
     color: white;
     text-align: center;
-    border-radius: 50px;
+    border-radius: 20px;
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    margin: 0 40px;
 }
 .subscription h2 {
     font-size: 24px;
