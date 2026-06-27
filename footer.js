@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const footerHTML = `
-    <div class="subscription">
+    <div class="subscription" style="border-radius: 20px; margin: 0 40px; overflow: hidden;">
         <h2>Subscribe to our Newsletter</h2>
         <form action="#" method="post">
             <input type="email" name="email" placeholder="Your Email Address" required>
