@@ -897,22 +897,20 @@ input, button {
 
 .subscription {
     background-image: url('assets/footer.png');
-    background-size: 1400px;
+    background-size: cover;
     height: 200px;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 100px;
+    padding: 0 60px;
     color: white;
     text-align: center;
     border-radius: 20px;
-    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    margin: 0 40px;
+    margin: 20px 40px;
     overflow: hidden;
-
 }
 .subscription h2 {
     font-size: 24px;
