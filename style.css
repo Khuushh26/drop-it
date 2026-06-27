@@ -911,6 +911,8 @@ input, button {
     align-items: center;
     position: relative;
     margin: 0 40px;
+    overflow: hidden;
+
 }
 .subscription h2 {
     font-size: 24px;
