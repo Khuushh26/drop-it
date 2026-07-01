@@ -12,81 +12,19 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: "Quicksand", sans-serif; background: #fff; }
-
-    /* Top Bar */
-    .top-bar {
-      background-color: #3BB77E;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 40px;
-      font-size: 12px;
-      color: #fff;
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1100;
-      height: 36px;
-    }
+    .top-bar { background-color: #3BB77E; display: flex; justify-content: space-between; align-items: center; padding: 8px 40px; font-size: 12px; color: #fff; position: fixed; top: 0; left: 0; right: 0; z-index: 1100; height: 36px; }
     .top-bar a { color: #fff; text-decoration: none; margin-right: 16px; font-weight: 500; }
-    .top-bar a:hover { text-decoration: underline; }
     .top-bar .right { font-weight: 600; }
-
-    /* Navbar override - white */
-    #navbar {
-      background-color: #ffffff !important;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
-      top: 36px !important;
-    }
+    #navbar { background-color: #ffffff !important; box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important; top: 36px !important; }
     #navbar .navbar-item h1 { color: #1a1a1a !important; }
     #navbar .icon { color: #555 !important; }
-
-    /* Page Content */
-    .page-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 30px 40px 60px;
-      margin-top: 110px;
-    }
-
-    /* Breadcrumb */
-    .breadcrumb {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 24px;
-    }
+    .page-content { max-width: 1200px; margin: 110px auto 0; padding: 30px 60px 60px; }
+    .breadcrumb { font-size: 13px; color: #888; margin-bottom: 24px; }
     .breadcrumb a { color: #3BB77E; text-decoration: none; }
     .breadcrumb span { margin: 0 6px; }
-
-    /* Product Section */
-    .product-section {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-bottom: 48px;
-    }
-
-    /* Image Box */
-    .product-image-box {
-      flex: 1;
-      min-width: 280px;
-      max-width: 540px;
-      background: #F5F5F5;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      min-height: 420px;
-      overflow: hidden;
-    }
-    .product-image-box img {
-      width: 100%;
-      height: 500px;
-      object-fit: cover;
-      border-radius: 16px;
-    }
-
-    /* Product Details */
+    .product-section { display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 48px; }
+    .product-image-box { flex: 1; min-width: 280px; max-width: 540px; background: #F5F5F5; border-radius: 16px; display: flex; align-items: center; justify-content: center; padding: 0; min-height: 420px; overflow: hidden; }
+    .product-image-box img { width: 100%; height: 500px; object-fit: cover; border-radius: 16px; }
     .product-details { flex: 1; min-width: 280px; padding: 10px 0; }
     .brand-name { font-size: 12px; color: #3BB77E; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
     .product-title { font-size: 26px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
@@ -104,14 +42,11 @@
     .detail-section h3 { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; }
     .detail-section p { font-size: 13px; color: #555; line-height: 1.8; margin-bottom: 12px; font-family: "Quicksand", sans-serif; }
     .detail-section a { color: #3BB77E; font-size: 13px; text-decoration: underline; }
-
-    /* Section Header */
     .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
     .section-header h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; }
-
-    /* Recommendations - Figma style */
-    .reco-wrapper { position: relative; margin-bottom: 40px; padding: 0 30px; }
+    .reco-wrapper { position: relative; margin-bottom: 40px; padding: 0 44px; }
     .reco-scroll { display: flex; gap: 16px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
+    .reco-scroll::-webkit-scrollbar { display: none; }
     .reco-card { min-width: 180px; max-width: 180px; flex-shrink: 0; }
     .reco-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
     .reco-card .r-brand { font-size: 11px; color: #888; margin-bottom: 2px; }
@@ -122,22 +57,17 @@
     .reco-card .r-price { font-size: 14px; color: #3BB77E; font-weight: 700; }
     .reco-card .r-old { font-size: 11px; color: #aaa; text-decoration: line-through; margin-left: 4px; }
     .reco-card .r-add { background: #DEF9EC; color: #3BB77E; border: none; padding: 5px 12px; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; font-family: "Quicksand", sans-serif; }
-
-    /* Scroll arrows */
-    .scroll-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: #fff; border: 1px solid #eee; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; color: #3BB77E; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 2; display: flex; align-items: center; justify-content: center; }
+    .scroll-arrow { position: absolute; top: calc(50% + 20px); transform: translateY(-50%); background: #fff; border: 1px solid #eee; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; color: #3BB77E; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 2; display: flex; align-items: center; justify-content: center; }
     .scroll-arrow.left { left: 0; }
     .scroll-arrow.right { right: 0; }
-
-    /* Explore - Figma style pink bg */
-    .explore-wrapper { position: relative; margin-bottom: 40px; padding: 0 30px; }
+    .explore-wrapper { position: relative; margin-bottom: 40px; padding: 0 44px; }
     .explore-scroll { display: flex; gap: 12px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
+    .explore-scroll::-webkit-scrollbar { display: none; }
     .explore-card { min-width: 140px; max-width: 160px; background: #FFF0F0; border-radius: 10px; padding: 16px 12px; text-align: center; cursor: pointer; flex-shrink: 0; transition: box-shadow 0.2s; }
     .explore-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .explore-card img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
     .explore-card .e-name { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
     .explore-card .e-count { font-size: 11px; color: #888; }
-
-    /* Responsive */
     @media (max-width: 768px) {
       .top-bar { padding: 8px 16px; font-size: 11px; }
       .page-content { padding: 20px 16px; margin-top: 100px; }
@@ -146,6 +76,8 @@
       .product-image-box img { height: 300px; }
       .explore-card { min-width: 120px; }
       .reco-card { min-width: 150px; }
+      .reco-wrapper { padding: 0 40px; }
+      .explore-wrapper { padding: 0 40px; }
     }
     @media (max-width: 480px) {
       .product-title { font-size: 20px; }
@@ -154,8 +86,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Top Bar -->
   <div class="top-bar">
     <div class="left">
       <a href="#">Account</a>
@@ -163,21 +93,15 @@
     </div>
     <div class="right">24/7 support center</div>
   </div>
-
   <div id="above-bar"></div>
   <div id="navbar"></div>
   <div id="bottom-bar"></div>
-
   <div class="page-content">
-
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
       <a href="index.html">Home</a><span>/</span>
       <a href="#">Vegetables</a><span>/</span>
       Tomato Local
     </div>
-
-    <!-- Product Section -->
     <div class="product-section">
       <div class="product-image-box">
         <img src="./assets/product1.png" alt="Tomato Local" />
@@ -199,70 +123,25 @@
         <hr class="divider" />
         <div class="detail-section">
           <h3>Product Details</h3>
-          <p><strong>Why are tomatoes healthy?</strong><br>
-          Tomatoes are loaded with a substance called lycopene. It gives them their bright red color and helps protect your cells from damage. Tomatoes also have potassium, vitamins B and E, and other nutrients. <a href="#">more</a></p>
-          <p><strong>Why are tomatoes healthy?</strong><br>
-          Tomatoes are loaded with a substance called lycopene. It gives them their bright red color and helps protect your cells from damage. Tomatoes also have potassium, vitamins B and E, and other nutrients. <a href="#">more</a></p>
+          <p><strong>Why are tomatoes healthy?</strong><br>Tomatoes are loaded with a substance called lycopene. It gives them their bright red color and helps protect your cells from damage. Tomatoes also have potassium, vitamins B and E, and other nutrients. <a href="#">more</a></p>
+          <p><strong>Why are tomatoes healthy?</strong><br>Tomatoes are loaded with a substance called lycopene. It gives them their bright red color and helps protect your cells from damage. Tomatoes also have potassium, vitamins B and E, and other nutrients. <a href="#">more</a></p>
         </div>
       </div>
     </div>
-
-    <!-- More Recommendations -->
     <div class="reco-wrapper">
-      <div class="section-header">
-        <h2>More recommendations</h2>
-      </div>
+      <div class="section-header"><h2>More recommendations</h2></div>
       <button class="scroll-arrow left" onclick="scrollReco(-1)"><i class="fas fa-chevron-left"></i></button>
       <div class="reco-scroll" id="recoScroll">
-        <div class="reco-card">
-          <img src="./assets/product1.png" alt="Tomato" />
-          <div class="r-brand">Tomato Local</div>
-          <div class="r-name">Tomato</div>
-          <div class="r-weight">1kg</div>
-          <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
-        </div>
-        <div class="reco-card">
-          <img src="./assets/product2.png" alt="Ginger" />
-          <div class="r-brand">Ginger</div>
-          <div class="r-name">Ginger</div>
-          <div class="r-weight">200g</div>
-          <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
-        </div>
-        <div class="reco-card">
-          <img src="./assets/product3.png" alt="Product" />
-          <div class="r-brand">Lorem ipsum</div>
-          <div class="r-name">Product</div>
-          <div class="r-weight">50g</div>
-          <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
-        </div>
-        <div class="reco-card">
-          <img src="./assets/product4.png" alt="Product" />
-          <div class="r-brand">Lorem ipsum</div>
-          <div class="r-name">Product</div>
-          <div class="r-weight">50g</div>
-          <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
-        </div>
-        <div class="reco-card">
-          <img src="./assets/fruit.png" alt="Product" />
-          <div class="r-brand">Lorem ipsum</div>
-          <div class="r-name">Product</div>
-          <div class="r-weight">50g</div>
-          <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
-        </div>
+        <div class="reco-card"><img src="./assets/product1.png" alt="Tomato" /><div class="r-brand">Tomato Local</div><div class="r-name">Tomato</div><div class="r-weight">1kg</div><div class="r-stars">★★★★☆ (4)</div><div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div></div>
+        <div class="reco-card"><img src="./assets/product2.png" alt="Ginger" /><div class="r-brand">Ginger</div><div class="r-name">Ginger</div><div class="r-weight">200g</div><div class="r-stars">★★★★☆ (4)</div><div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div></div>
+        <div class="reco-card"><img src="./assets/product3.png" alt="Product" /><div class="r-brand">Lorem ipsum</div><div class="r-name">Product</div><div class="r-weight">50g</div><div class="r-stars">★★★★☆ (4)</div><div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div></div>
+        <div class="reco-card"><img src="./assets/product4.png" alt="Product" /><div class="r-brand">Lorem ipsum</div><div class="r-name">Product</div><div class="r-weight">50g</div><div class="r-stars">★★★★☆ (4)</div><div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div></div>
+        <div class="reco-card"><img src="./assets/fruit.png" alt="Product" /><div class="r-brand">Lorem ipsum</div><div class="r-name">Product</div><div class="r-weight">50g</div><div class="r-stars">★★★★☆ (4)</div><div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div></div>
       </div>
       <button class="scroll-arrow right" onclick="scrollReco(1)"><i class="fas fa-chevron-right"></i></button>
     </div>
-
-    <!-- Explore -->
     <div class="explore-wrapper">
-      <div class="section-header">
-        <h2>Explore</h2>
-      </div>
+      <div class="section-header"><h2>Explore</h2></div>
       <button class="scroll-arrow left" onclick="scrollExplore(-1)"><i class="fas fa-chevron-left"></i></button>
       <div class="explore-scroll" id="exploreScroll">
         <div class="explore-card"><img src="./assets/fruit.png" alt="Fruits" /><div class="e-name">Fruits & Vegetables</div><div class="e-count">20 Items</div></div>
@@ -275,19 +154,12 @@
       </div>
       <button class="scroll-arrow right" onclick="scrollExplore(1)"><i class="fas fa-chevron-right"></i></button>
     </div>
-
   </div>
-
   <script src="navbar.js"></script>
   <script src="footer.js"></script>
-
   <script>
-    function scrollReco(dir) {
-      document.getElementById('recoScroll').scrollBy({ left: dir * 200, behavior: 'smooth' });
-    }
-    function scrollExplore(dir) {
-      document.getElementById('exploreScroll').scrollBy({ left: dir * 200, behavior: 'smooth' });
-    }
+    function scrollReco(dir) { document.getElementById('recoScroll').scrollBy({ left: dir * 200, behavior: 'smooth' }); }
+    function scrollExplore(dir) { document.getElementById('exploreScroll').scrollBy({ left: dir * 200, behavior: 'smooth' }); }
   </script>
 </body>
 </html>
