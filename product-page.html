@@ -4,22 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drop It | Product</title>
-
   <script src="https://kit.fontawesome.com/96c75676d8.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Quicksand", sans-serif; background: #fff; }
 
-    body {
-      font-family: "Quicksand", sans-serif;
-      background: #fff;
-    }
-
-    /* ── Top Bar ── */
+    /* Top Bar */
     .top-bar {
       background-color: #3BB77E;
       display: flex;
@@ -29,352 +23,136 @@
       font-size: 12px;
       color: #fff;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1100;
+      height: 36px;
     }
-
-    .top-bar a {
-      color: #fff;
-      text-decoration: none;
-      margin-right: 16px;
-      font-weight: 500;
-    }
-
+    .top-bar a { color: #fff; text-decoration: none; margin-right: 16px; font-weight: 500; }
     .top-bar a:hover { text-decoration: underline; }
-
     .top-bar .right { font-weight: 600; }
 
-    /* ── Page offset for fixed bars ── */
+    /* Navbar override - white */
+    #navbar {
+      background-color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+      top: 36px !important;
+    }
+    #navbar .navbar-item h1 { color: #1a1a1a !important; }
+    #navbar .icon { color: #555 !important; }
+
+    /* Page Content */
     .page-content {
-      margin-top: 100px;
-      padding: 30px 40px;
       max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
+      padding: 30px 40px 60px;
       margin-top: 110px;
     }
 
-    /* ── Breadcrumb ── */
+    /* Breadcrumb */
     .breadcrumb {
       font-size: 13px;
       color: #888;
       margin-bottom: 24px;
     }
-
-    .breadcrumb a {
-      color: #3BB77E;
-      text-decoration: none;
-    }
-
+    .breadcrumb a { color: #3BB77E; text-decoration: none; }
     .breadcrumb span { margin: 0 6px; }
 
-    /* ── Product Section ── */
+    /* Product Section */
     .product-section {
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
       margin-bottom: 48px;
     }
-/* Left - Image */
-/* Left - Image */
-.product-image-box {
-  flex: 1;
-  min-width: 280px;
-  max-width: 540px;
-  background: #F5F5F5;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  min-height: 420px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  overflow: hidden;
-}
-.product-image-box img {
-   width: 100%;
-  height: 500px;
-  object-fit: cover;
-  border-radius: 16px;
-}
 
-    /* Right - Details */
-    .product-details {
+    /* Image Box */
+    .product-image-box {
       flex: 1;
       min-width: 280px;
-      padding: 10px 0;
-    }
-
-    .brand-name {
-      font-size: 12px;
-      color: #3BB77E;
-      font-weight: 600;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .product-title {
-      font-size: 26px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 6px;
-    }
-
-    .product-weight {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 14px;
-    }
-
-    /* Rating */
-    .rating-row {
+      max-width: 540px;
+      background: #F5F5F5;
+      border-radius: 16px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 16px;
+      justify-content: center;
+      padding: 0;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .product-image-box img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 16px;
     }
 
+    /* Product Details */
+    .product-details { flex: 1; min-width: 280px; padding: 10px 0; }
+    .brand-name { font-size: 12px; color: #3BB77E; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .product-title { font-size: 26px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+    .product-weight { font-size: 13px; color: #888; margin-bottom: 14px; }
+    .rating-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
     .stars { color: #FDC040; font-size: 14px; }
     .rating-count { font-size: 12px; color: #888; }
-
-    /* Price Row */
-    .price-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .price-new {
-      font-size: 24px;
-      font-weight: 700;
-      color: #3BB77E;
-    }
-
-    .price-old {
-      font-size: 16px;
-      color: #aaa;
-      text-decoration: line-through;
-    }
-
-    .discount-badge {
-      background: #FDC040;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 4px;
-    }
-
-    /* Add button */
-    .add-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #DEF9EC;
-      color: #3BB77E;
-      border: none;
-      padding: 10px 28px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 4px;
-      font-family: "Quicksand", sans-serif;
-      transition: background 0.2s;
-      margin-bottom: 24px;
-    }
-
+    .price-row { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .price-new { font-size: 24px; font-weight: 700; color: #3BB77E; }
+    .price-old { font-size: 16px; color: #aaa; text-decoration: line-through; }
+    .discount-badge { background: #FDC040; color: #fff; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 4px; }
+    .add-btn { display: inline-flex; align-items: center; gap: 8px; background: #DEF9EC; color: #3BB77E; border: none; padding: 10px 28px; font-size: 14px; font-weight: 600; cursor: pointer; border-radius: 4px; font-family: "Quicksand", sans-serif; transition: background 0.2s; margin-bottom: 24px; }
     .add-btn:hover { background: #b5f8d7; }
+    .divider { border: none; border-top: 1px solid #eee; margin: 20px 0; }
+    .detail-section h3 { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; }
+    .detail-section p { font-size: 13px; color: #555; line-height: 1.8; margin-bottom: 12px; font-family: "Quicksand", sans-serif; }
+    .detail-section a { color: #3BB77E; font-size: 13px; text-decoration: underline; }
 
-    /* Divider */
-    .divider {
-      border: none;
-      border-top: 1px solid #eee;
-      margin: 20px 0;
-    }
+    /* Section Header */
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .section-header h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; }
 
-    /* Product Details section */
-    .detail-section h3 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 14px;
-    }
-
-    .detail-section p {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.8;
-      margin-bottom: 12px;
-      font-family: "Quicksand", sans-serif;
-    }
-
-    .detail-section a {
-      color: #3BB77E;
-      font-size: 13px;
-      text-decoration: underline;
-    }
-
-    /* ── More Recommendations ── */
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .section-header h2 {
-      font-size: 22px;
-      font-weight: 700;
-      color: #1a1a1a;
-    }
-
-    .section-header .arrows button {
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-      color: #3BB77E;
-      font-size: 14px;
-      margin-left: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
-
-    .reco-grid {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-    }
-
-    .reco-card {
-      min-width: 180px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      padding: 14px;
-      flex-shrink: 0;
-    }
-
-    .reco-card img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    .reco-card .r-brand { font-size: 11px; color: #888; margin-bottom: 4px; }
-    .reco-card .r-name { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+    /* Recommendations - Figma style */
+    .reco-wrapper { position: relative; margin-bottom: 40px; padding: 0 30px; }
+    .reco-scroll { display: flex; gap: 16px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
+    .reco-card { min-width: 180px; max-width: 180px; flex-shrink: 0; }
+    .reco-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+    .reco-card .r-brand { font-size: 11px; color: #888; margin-bottom: 2px; }
+    .reco-card .r-name { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
     .reco-card .r-weight { font-size: 11px; color: #aaa; margin-bottom: 6px; }
     .reco-card .r-stars { color: #FDC040; font-size: 11px; margin-bottom: 8px; }
-
-    .reco-card .r-price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
+    .reco-card .r-price-row { display: flex; align-items: center; justify-content: space-between; }
     .reco-card .r-price { font-size: 14px; color: #3BB77E; font-weight: 700; }
     .reco-card .r-old { font-size: 11px; color: #aaa; text-decoration: line-through; margin-left: 4px; }
+    .reco-card .r-add { background: #DEF9EC; color: #3BB77E; border: none; padding: 5px 12px; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; font-family: "Quicksand", sans-serif; }
 
-    .reco-card .r-add {
-      background: #DEF9EC;
-      color: #3BB77E;
-      border: none;
-      padding: 5px 12px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 4px;
-      font-family: "Quicksand", sans-serif;
-    }
+    /* Scroll arrows */
+    .scroll-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: #fff; border: 1px solid #eee; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; color: #3BB77E; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 2; display: flex; align-items: center; justify-content: center; }
+    .scroll-arrow.left { left: 0; }
+    .scroll-arrow.right { right: 0; }
 
-    .reco-card .r-add:hover { background: #b5f8d7; }
+    /* Explore - Figma style pink bg */
+    .explore-wrapper { position: relative; margin-bottom: 40px; padding: 0 30px; }
+    .explore-scroll { display: flex; gap: 12px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
+    .explore-card { min-width: 140px; max-width: 160px; background: #FFF0F0; border-radius: 10px; padding: 16px 12px; text-align: center; cursor: pointer; flex-shrink: 0; transition: box-shadow 0.2s; }
+    .explore-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .explore-card img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
+    .explore-card .e-name { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+    .explore-card .e-count { font-size: 11px; color: #888; }
 
-    /* ── Explore Section ── */
-    .explore-section-pp {
-      margin: 10px 0;
-    }
-
-    .explore-grid {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .explore-card {
-      background: #F9FFF5;
-      border: 1px solid #E8F5EE;
-      border-radius: 10px;
-      padding: 16px 20px;
-      min-width: 140px;
-      text-align: center;
-      cursor: pointer;
-      transition: box-shadow 0.2s;
-      flex: 1;
-    }
-
-    .explore-card:hover { box-shadow: 0 4px 12px rgba(59,183,126,0.15); }
-
-    .explore-card img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 8px;
-    }
-
-    .explore-card .e-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 4px;
-    }
-
-    .explore-card .e-count {
-      font-size: 11px;
-      color: #888;
-    }
-    /* White navbar override for product page */
-#navbar {
-    background-color: #ffffff !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    top: 36px;
-}
-#navbar .navbar-item h1 { color: #1a1a1a !important; }
-#navbar .icon { color: #3BB77E !important; }
-.search-button i { color: #3BB77E !important; }
-.page-content {
-    margin-top: 150px;
-    padding: 30px 40px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-    /* ── Responsive ── */
+    /* Responsive */
     @media (max-width: 768px) {
       .top-bar { padding: 8px 16px; font-size: 11px; }
       .page-content { padding: 20px 16px; margin-top: 100px; }
       .product-section { flex-direction: column; }
       .product-image-box { max-width: 100%; }
-      .explore-grid { flex-wrap: wrap; }
+      .product-image-box img { height: 300px; }
       .explore-card { min-width: 120px; }
+      .reco-card { min-width: 150px; }
     }
-
     @media (max-width: 480px) {
       .product-title { font-size: 20px; }
       .price-new { font-size: 20px; }
     }
   </style>
 </head>
-
 <body>
 
   <!-- Top Bar -->
@@ -386,201 +164,130 @@
     <div class="right">24/7 support center</div>
   </div>
 
-  <!-- Navbar -->
   <div id="above-bar"></div>
   <div id="navbar"></div>
   <div id="bottom-bar"></div>
 
-  <!-- Page Content -->
   <div class="page-content">
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span>/</span>
-      <a href="#">Vegetables</a>
-      <span>/</span>
+      <a href="index.html">Home</a><span>/</span>
+      <a href="#">Vegetables</a><span>/</span>
       Tomato Local
     </div>
 
     <!-- Product Section -->
     <div class="product-section">
-
-      <!-- Left: Image -->
       <div class="product-image-box">
         <img src="./assets/product1.png" alt="Tomato Local" />
       </div>
-
-      <!-- Right: Details -->
       <div class="product-details">
-
         <div class="brand-name">Brand Name</div>
         <h1 class="product-title">Tomato Local</h1>
         <div class="product-weight">1kg</div>
-
         <div class="rating-row">
-          <span class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-          </span>
+          <span class="stars">★★★★½</span>
           <span class="rating-count">(4)</span>
         </div>
-
         <div class="price-row">
           <span class="price-new">₹ 64</span>
           <span class="price-old">80</span>
           <span class="discount-badge">10% off</span>
         </div>
-
-        <button class="add-btn">
-          <i class="fas fa-shopping-cart"></i> Add
-        </button>
-
+        <button class="add-btn"><i class="fas fa-shopping-cart"></i> Add</button>
         <hr class="divider" />
-
-        <!-- Product Details -->
         <div class="detail-section">
           <h3>Product Details</h3>
           <p><strong>Why are tomatoes healthy?</strong><br>
           Tomatoes are loaded with a substance called lycopene. It gives them their bright red color and helps protect your cells from damage. Tomatoes also have potassium, vitamins B and E, and other nutrients. <a href="#">more</a></p>
-
           <p><strong>Why are tomatoes healthy?</strong><br>
           Tomatoes are loaded with a substance called lycopene. It gives them their bright red color and helps protect your cells from damage. Tomatoes also have potassium, vitamins B and E, and other nutrients. <a href="#">more</a></p>
         </div>
-
       </div>
     </div>
 
     <!-- More Recommendations -->
-    <div style="margin-bottom: 10px;">
+    <div class="reco-wrapper">
       <div class="section-header">
         <h2>More recommendations</h2>
-        <div class="arrows">
-          <button><i class="fas fa-chevron-left"></i></button>
-          <button><i class="fas fa-chevron-right"></i></button>
-        </div>
       </div>
-
-      <div class="reco-grid">
+      <button class="scroll-arrow left" onclick="scrollReco(-1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="reco-scroll" id="recoScroll">
         <div class="reco-card">
           <img src="./assets/product1.png" alt="Tomato" />
           <div class="r-brand">Tomato Local</div>
           <div class="r-name">Tomato</div>
           <div class="r-weight">1kg</div>
           <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row">
-            <div><span class="r-price">₹ 64</span><span class="r-old">80</span></div>
-            <button class="r-add">🛒 Add</button>
-          </div>
+          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
         </div>
-
         <div class="reco-card">
           <img src="./assets/product2.png" alt="Ginger" />
           <div class="r-brand">Ginger</div>
           <div class="r-name">Ginger</div>
           <div class="r-weight">200g</div>
           <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row">
-            <div><span class="r-price">₹ 64</span><span class="r-old">80</span></div>
-            <button class="r-add">🛒 Add</button>
-          </div>
+          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
         </div>
-
         <div class="reco-card">
           <img src="./assets/product3.png" alt="Product" />
           <div class="r-brand">Lorem ipsum</div>
           <div class="r-name">Product</div>
           <div class="r-weight">50g</div>
           <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row">
-            <div><span class="r-price">₹ 64</span><span class="r-old">80</span></div>
-            <button class="r-add">🛒 Add</button>
-          </div>
+          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
         </div>
-
         <div class="reco-card">
           <img src="./assets/product4.png" alt="Product" />
           <div class="r-brand">Lorem ipsum</div>
           <div class="r-name">Product</div>
           <div class="r-weight">50g</div>
           <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row">
-            <div><span class="r-price">₹ 64</span><span class="r-old">80</span></div>
-            <button class="r-add">🛒 Add</button>
-          </div>
+          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
         </div>
-
         <div class="reco-card">
           <img src="./assets/fruit.png" alt="Product" />
           <div class="r-brand">Lorem ipsum</div>
           <div class="r-name">Product</div>
           <div class="r-weight">50g</div>
           <div class="r-stars">★★★★☆ (4)</div>
-          <div class="r-price-row">
-            <div><span class="r-price">₹ 64</span><span class="r-old">80</span></div>
-            <button class="r-add">🛒 Add</button>
-          </div>
+          <div class="r-price-row"><div><span class="r-price">₹ 64</span><span class="r-old">80</span></div><button class="r-add">🛒 Add</button></div>
         </div>
       </div>
+      <button class="scroll-arrow right" onclick="scrollReco(1)"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <!-- Explore Section -->
-    <div class="explore-section-pp">
+    <!-- Explore -->
+    <div class="explore-wrapper">
       <div class="section-header">
         <h2>Explore</h2>
-        <div class="arrows">
-          <button><i class="fas fa-chevron-left"></i></button>
-          <button><i class="fas fa-chevron-right"></i></button>
-        </div>
       </div>
-
-      <div class="explore-grid">
-        <div class="explore-card">
-          <img src="./assets/fruit.png" alt="Fruits" />
-          <div class="e-name">Fruits & Vegetables</div>
-          <div class="e-count">20 Items</div>
-        </div>
-        <div class="explore-card">
-          <img src="./assets/masala.png" alt="Masala" />
-          <div class="e-name">Masala & Dry fruits</div>
-          <div class="e-count">220 Items</div>
-        </div>
-        <div class="explore-card">
-          <img src="./assets/frozen_food.png" alt="Frozen" />
-          <div class="e-name">Frozen Food & Ice Creams</div>
-          <div class="e-count">10 Items</div>
-        </div>
-        <div class="explore-card">
-          <img src="./assets/packaged.png" alt="Packaged" />
-          <div class="e-name">Packaged Food</div>
-          <div class="e-count">40 Items</div>
-        </div>
-        <div class="explore-card">
-          <img src="./assets/juice.png" alt="Drinks" />
-          <div class="e-name">Cool Drinks & Juices</div>
-          <div class="e-count">25 Items</div>
-        </div>
-        <div class="explore-card">
-          <img src="./assets/electrical.png" alt="Electrical" />
-          <div class="e-name">Electrical & Accessories</div>
-          <div class="e-count">3 Items</div>
-        </div>
-        <div class="explore-card">
-          <img src="./assets/stationery.png" alt="Stationery" />
-          <div class="e-name">Stationery & Crafts</div>
-          <div class="e-count">9 Items</div>
-        </div>
+      <button class="scroll-arrow left" onclick="scrollExplore(-1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="explore-scroll" id="exploreScroll">
+        <div class="explore-card"><img src="./assets/fruit.png" alt="Fruits" /><div class="e-name">Fruits & Vegetables</div><div class="e-count">20 Items</div></div>
+        <div class="explore-card"><img src="./assets/masala.png" alt="Masala" /><div class="e-name">Masala & Dry fruits</div><div class="e-count">220 Items</div></div>
+        <div class="explore-card"><img src="./assets/frozen_food.png" alt="Frozen" /><div class="e-name">Frozen Food & Ice Creams</div><div class="e-count">10 Items</div></div>
+        <div class="explore-card"><img src="./assets/packaged.png" alt="Packaged" /><div class="e-name">Packaged Food</div><div class="e-count">40 Items</div></div>
+        <div class="explore-card"><img src="./assets/juice.png" alt="Drinks" /><div class="e-name">Cool Drinks & Juices</div><div class="e-count">25 Items</div></div>
+        <div class="explore-card"><img src="./assets/electrical.png" alt="Electrical" /><div class="e-name">Electrical & Accessories</div><div class="e-count">3 Items</div></div>
+        <div class="explore-card"><img src="./assets/stationery.png" alt="Stationery" /><div class="e-name">Stationery & Crafts</div><div class="e-count">9 Items</div></div>
       </div>
+      <button class="scroll-arrow right" onclick="scrollExplore(1)"><i class="fas fa-chevron-right"></i></button>
     </div>
 
   </div>
 
-  <!-- Footer -->
   <script src="navbar.js"></script>
   <script src="footer.js"></script>
 
+  <script>
+    function scrollReco(dir) {
+      document.getElementById('recoScroll').scrollBy({ left: dir * 200, behavior: 'smooth' });
+    }
+    function scrollExplore(dir) {
+      document.getElementById('exploreScroll').scrollBy({ left: dir * 200, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
